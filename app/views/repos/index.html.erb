@@ -1,0 +1,9 @@
+<h1><%= current_user.name %>'s Repositories</h1>
+
+
+<% @presenter.repositories.each do |repo| %>
+<ul class="repo">
+  <li class="repo-name"><%= repo.name %></li>
+  <li class="repo-url"><%= link_to repo.url, repo.url %></li>
+</ul>
+<% end %>

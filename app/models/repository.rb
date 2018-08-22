@@ -1,4 +1,10 @@
 class Repository
+  attr_reader :name,
+              :owner,
+              :url,
+              :created_at,
+              :updated_at
+              
   def initialize(raw_repo)
     @name = raw_repo[:name]
     @owner = raw_repo[:owner][:login]
