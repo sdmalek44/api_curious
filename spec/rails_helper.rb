@@ -10,18 +10,18 @@ require 'webmock/rspec'
   def stub_omniauth
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({'provider' => 'github',
-                                                                  'uid' => '12345',
+                                                                  'uid' => '12445',
                                                                   'info' => {
                                                                     'name' => 'Stephen',
                                                                     'email' => 'ste@ste.ste',
                                                                     'nickname' => 'sdmalek44'
                                                                   },
                                                                   'credentials' => {
-                                                                    'token' => '1223448'
+                                                                    'token' => 'accf1f94643378e4111744f29ea495b2fbf1eb4b'
                                                                   },
                                                                   'extra' => {
                                                                     'raw_info' => {
-                                                                      'avatar_url' => 'some_image'
+                                                                      'avatar_url' => 'image'
                                                                     }
                                                                   }
                                                                 })
@@ -58,6 +58,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.include FactoryBot::Syntax::Methods
+
+  config.before(:each) do
+    WebMock.reset!
+  end
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
