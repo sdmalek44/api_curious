@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180820213248) do
     t.string "name"
     t.string "token"
     t.string "image"
+    t.string "login"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

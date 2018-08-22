@@ -6,6 +6,7 @@ class User < ApplicationRecord
       user.name = auth[:info][:name]
       user.token = auth[:credentials][:token]
       user.image = auth[:extra][:raw_info][:avatar_url]
+      user.login = auth[:extra][:raw_info][:login]
     end
   end
 
