@@ -1,8 +1,7 @@
 <h2><%= current_user.name %>'s Followers</h2>
-<% @github_followers.each do |follower| %>
+<% @presenter.followers.each do |follower| %>
 <ul class="follower">
   <img src="<%= follower.image %>" alt="" class="follower-image">
   <li class="follower-login"><%= follower.login %></li>
 </ul>
-
 <% end %>

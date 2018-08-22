@@ -6,11 +6,11 @@ class GithubService
   end
 
   def starred_repos
-    call_starred
+    @starred ||= get_json("/users/#{@login}/starred")
   end
 
-  def call_starred
-    @starred ||= get_json("/users/#{@login}/starred")
+  def followers
+    @followers ||= get_json("/users/#{@login}/followers")
   end
 
   private
