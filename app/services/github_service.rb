@@ -13,6 +13,10 @@ class GithubService
     @followers ||= get_json("/users/#{@login}/followers")
   end
 
+  def repositories
+    @repositories ||= get_json("/users/#{@login}/repos")
+  end
+
   private
 
   def conn

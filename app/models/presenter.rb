@@ -1,7 +1,7 @@
 class Presenter
 
   def initialize(current_user)
-    @service ||= GithubService.new(current_user)
+    @service = GithubService.new(current_user)
   end
 
   def starred_repos
@@ -13,6 +13,12 @@ class Presenter
   def followers
     @service.followers.map do |follower_info|
       GithubUser.new(follower_info)
+    end
+  end
+
+  def repositories
+    @service.repositories.map do |repo_info|
+      Repository.new(repo_info)
     end
   end
 end

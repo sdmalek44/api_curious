@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy"
   resources :users, only: [:show]
   get '/dashboard', to: "dashboard#index"
+  resources :repos, only: [:index]
   resources :followers, only: [:index]
 end
