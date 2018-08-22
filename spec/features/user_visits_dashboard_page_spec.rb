@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'user visits /users/:id' do
+describe 'user visits /dashboard' do
   it 'sees a list of all followers of the user' do
     user = create(:user)
     stub_request(:get, "https://api.github.com/users/#{user.login}/starred").
@@ -14,7 +14,7 @@ describe 'user visits /users/:id' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit user_path(user)
+    visit dashboard_path
 
     expect(page).to have_css('.starred')
 

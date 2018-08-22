@@ -1,0 +1,3 @@
+<img src="<%= current_user.image %>" alt="avatar">
+<%= link_to 'Followers', '/followers' %>
+<div class="starred">Starred Repos: <%= @presenter.starred_repos.length %></div>
