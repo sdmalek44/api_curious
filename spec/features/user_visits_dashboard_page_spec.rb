@@ -12,6 +12,25 @@ describe 'user visits /dashboard' do
           'User-Agent'=>'Faraday v0.12.2'
            }).to_return(status: 200, body: File.read('./spec/mock_requests/starred.json'), headers: {})
 
+    stub_request(:get, "https://api.github.com/users/#{user.login}/followers").
+            with(
+              headers: {
+             'Accept'=>'*/*',
+             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+             'Authorization'=>'token accf1f94643378e4111744f29ea495b2fbf1eb4b',
+             'User-Agent'=>'Faraday v0.12.2'
+              }).to_return(status: 200, body: File.read('./spec/mock_requests/followers.json'), headers: {})
+
+    stub_request(:get, "https://api.github.com/users/#{user.login}/following").
+            with(
+              headers: {
+             'Accept'=>'*/*',
+             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+             'Authorization'=>'token accf1f94643378e4111744f29ea495b2fbf1eb4b',
+             'User-Agent'=>'Faraday v0.12.2'
+              }).to_return(status: 200, body: File.read('./spec/mock_requests/following.json'), headers: {})
+
+
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit dashboard_path
@@ -20,6 +39,12 @@ describe 'user visits /dashboard' do
 
     within('.starred') do
       expect(page).to have_content('3')
+    end
+    within('.followers') do
+      expect(page).to have_content('2')
+    end
+    within('.following') do
+      expect(page).to have_content('1')
     end
   end
 end

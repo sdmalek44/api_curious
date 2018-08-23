@@ -16,6 +16,12 @@ class Presenter
     end
   end
 
+  def following
+    @service.following.map do |following_info|
+      GithubUser.new(following_info)
+    end
+  end
+
   def repositories
     @service.repositories.map do |repo_info|
       Repository.new(repo_info)
