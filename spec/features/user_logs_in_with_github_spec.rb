@@ -4,32 +4,11 @@ RSpec.feature "user logs in" do
   scenario "using rspec oauth" do
     user = create(:user)
     stub_omniauth
-    stub_request(:get, "https://api.github.com/users/#{user.login}/starred").
-         with(
-           headers: {
-          'Accept'=>'*/*',
-          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'Authorization'=>'token accf1f94643378e4111744f29ea495b2fbf1eb4b',
-          'User-Agent'=>'Faraday v0.12.2'
-           }).to_return(status: 200, body: File.read('./spec/mock_requests/starred.json'), headers: {})
+    stub_request(:get, "https://api.github.com/users/#{user.login}/starred").to_return(status: 200, body: File.read('./spec/mock_requests/starred.json'), headers: {})
 
-    stub_request(:get, "https://api.github.com/users/#{user.login}/followers").
-            with(
-              headers: {
-             'Accept'=>'*/*',
-             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-             'Authorization'=>'token accf1f94643378e4111744f29ea495b2fbf1eb4b',
-             'User-Agent'=>'Faraday v0.12.2'
-              }).to_return(status: 200, body: File.read('./spec/mock_requests/followers.json'), headers: {})
+    stub_request(:get, "https://api.github.com/users/#{user.login}/followers").to_return(status: 200, body: File.read('./spec/mock_requests/followers.json'), headers: {})
 
-    stub_request(:get, "https://api.github.com/users/#{user.login}/following").
-            with(
-              headers: {
-             'Accept'=>'*/*',
-             'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-             'Authorization'=>'token accf1f94643378e4111744f29ea495b2fbf1eb4b',
-             'User-Agent'=>'Faraday v0.12.2'
-              }).to_return(status: 200, body: File.read('./spec/mock_requests/following.json'), headers: {})
+    stub_request(:get, "https://api.github.com/users/#{user.login}/following").to_return(status: 200, body: File.read('./spec/mock_requests/following.json'), headers: {})
 
     visit root_path
 

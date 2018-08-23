@@ -1,8 +1,9 @@
 class GithubService
 
-  def initialize(current_user)
-    @token = current_user.token
-    @login = current_user.login
+  def initialize(github_user)
+    @token = github_user.token
+    @login = github_user.login
+    @name = github_user.name.delete(" ")
   end
 
   def starred_repos
@@ -25,6 +26,10 @@ class GithubService
       @repositories
   end
 
+  def recent_commits
+    @commits ||= (get_json("/search/commits?q=committer-name:#{@name}+committer-date:>#{3.days.ago.strftime('%Y-%m-%d')}"))[:items]
+  end
+
   def push_events
     @events ||= get_json("/users/#{@login}/events").find_all {|event| event[:type] == "PushEvent"}
   end
@@ -34,6 +39,7 @@ class GithubService
   def conn
     @conn ||= Faraday.new('https://api.github.com') do |faraday|
       faraday.headers['Authorization'] = "token #{@token}"
+      faraday.headers["Accept"] = "application/vnd.github.cloak-preview"
       faraday.adapter Faraday.default_adapter
     end
   end

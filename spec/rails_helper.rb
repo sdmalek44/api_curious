@@ -19,7 +19,7 @@ require 'webmock/rspec'
                                                                     'nickname' => 'sdmalek44'
                                                                   },
                                                                   'credentials' => {
-                                                                    'token' => 'accf1f94643378e4111744f29ea495b2fbf1eb4b'
+                                                                    'token' => ENV['GITHUB_TEST_KEY']
                                                                   },
                                                                   'extra' => {
                                                                     'raw_info' => {
@@ -78,7 +78,6 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
