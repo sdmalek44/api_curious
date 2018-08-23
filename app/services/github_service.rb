@@ -25,6 +25,10 @@ class GithubService
       @repositories
   end
 
+  def push_events
+    @events ||= get_json("/users/#{@login}/events").find_all {|event| event[:type] == "PushEvent"}
+  end
+
   private
 
   def conn
