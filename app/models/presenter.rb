@@ -30,8 +30,8 @@ class Presenter
   end
 
   def recent_commits
-    @service.recent_commits.reverse.map do |commit_info|
+    @service.recent_commits.pop(10).reverse.map do |commit_info|
       Commit.new(commit_info)
-    end.shift(10)
+    end
   end
 end
