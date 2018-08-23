@@ -34,10 +34,6 @@ class GithubService
     @commits ||= (get_json("/search/commits?q=author:#{@login}+committer-date:>#{3.days.ago.strftime('%Y-%m-%d')}"))[:items]
   end
 
-  def push_events
-    @events ||= get_json("/users/#{@login}/events").find_all {|event| event[:type] == "PushEvent"}
-  end
-
   private
 
   def conn
