@@ -1,11 +1,14 @@
 class GithubUser
   attr_reader :login,
               :image,
-              :url
+              :url,
+              :token
 
-  def initialize(follower_info)
-    @login = follower_info[:login]
-    @image = follower_info[:avatar_url]
-    @url = follower_info[:url]
+  def initialize(login, image, url, token = nil)
+    @login = login
+    @image = image
+    @url = url
+    @token = token
   end
+  
 end

@@ -11,14 +11,14 @@ class Presenter
   end
 
   def followers
-    @service.followers.map do |follower_info|
-      GithubUser.new(follower_info)
+    @service.followers.map do |follower|
+      GithubUser.new(follower[:login], follower[:avatar_url], follower[:url])
     end
   end
 
   def following
-    @service.following.map do |following_info|
-      GithubUser.new(following_info)
+    @service.following.map do |following|
+      GithubUser.new(following[:login], following[:avatar_url], following[:url])
     end
   end
 
