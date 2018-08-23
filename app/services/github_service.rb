@@ -13,8 +13,20 @@ class GithubService
     @followers ||= get_json("/users/#{@login}/followers")
   end
 
+  def following
+    @following ||= get_json("/users/#{@login}/following")
+  end
+
   def repositories
-    @repositories ||= get_json("/users/#{@login}/repos")
+      @repositories ||= get_json("/users/#{@login}/repos?page=#{num = 1}")
+      while @repositories.length % 30 == 0
+        @repositories = (@repositories << get_json("/users/#{@login}/repos?page=#{num += 1}")).flatten
+      end
+      @repositories
+  end
+
+  def push_events
+    @events ||= get_json("/users/#{@login}/events").find_all {|event| event[:type] == "PushEvent"}
   end
 
   private

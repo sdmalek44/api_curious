@@ -1,0 +1,10 @@
+<h1><%= current_user.name %>'s Recent Commits</h1>
+<% @presenter.recent_commits.each do |commit| %>
+<ul class="commit">
+  <li class="commit-author">Author: <%= commit.author %></li>
+  <li class="commit-repo-name">Repository: <%= commit.repo_name %></li>
+  <li class="commit-sha">Sha Key: <%= commit.sha_key %></li>
+  <li class="commit-message">Message: <%= commit.message %></li>
+  <li class="commit-created-at">Created At: <%= commit.created_at.strftime("%Y/%m/%d at %I:%M%p") %></li>
+</ul>
+<% end %>
