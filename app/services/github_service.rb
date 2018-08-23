@@ -14,7 +14,11 @@ class GithubService
   end
 
   def repositories
-    @repositories ||= get_json("/users/#{@login}/repos")
+      @repositories ||= get_json("/users/#{@login}/repos?page=#{num = 1}")
+      while @repositories.length % 30 == 0
+        @repositories = (@repositories << get_json("/users/#{@login}/repos?page=#{num += 1}")).flatten
+      end
+      @repositories
   end
 
   private
