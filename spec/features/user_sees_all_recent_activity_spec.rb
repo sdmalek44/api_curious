@@ -5,8 +5,9 @@ describe 'user visits /recent_activity' do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     date = 3.days.ago.strftime("%Y-%m-%d")
-    name = user.name.delete(" ")
-    stub_request(:get, "https://api.github.com/search/commits?q=committer-name:#{name}+committer-date:>#{date}").to_return(status: 200, body: File.read('./spec/mock_requests/commits.json'))
+    login = user.login
+    
+    stub_request(:get, "https://api.github.com/search/commits?q=author:#{login}+committer-date:>#{date}").to_return(status: 200, body: File.read('./spec/mock_requests/commits.json'))
 
 
     visit recent_activity_path

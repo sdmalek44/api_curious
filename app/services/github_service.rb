@@ -3,7 +3,7 @@ class GithubService
   def initialize(github_user)
     @token = github_user.token
     @login = github_user.login
-    @name = github_user.name.delete(" ")
+    @login = github_user.login
   end
 
   def starred_repos
@@ -27,7 +27,7 @@ class GithubService
   end
 
   def recent_commits
-    @commits ||= (get_json("/search/commits?q=committer-name:#{@name}+committer-date:>#{3.days.ago.strftime('%Y-%m-%d')}"))[:items]
+    @commits ||= (get_json("/search/commits?q=author:#{@login}+committer-date:>#{3.days.ago.strftime('%Y-%m-%d')}"))[:items]
   end
 
   def push_events
