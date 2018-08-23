@@ -29,6 +29,12 @@ class Presenter
     end
   end
 
+  def organizations
+    @service.organizations.map do |org_info|
+      Organization.new(org_info)
+    end
+  end
+
   def recent_commits
     @service.recent_commits.pop(10).reverse.map do |commit_info|
       Commit.new(commit_info)

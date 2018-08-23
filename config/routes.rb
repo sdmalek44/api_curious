@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :followings, only: [:index]
   get '/following', to: 'followings#show'
   get '/recent_activity', to: 'recent_activity#index'
+  resources :organizations, only: [:index]
 end

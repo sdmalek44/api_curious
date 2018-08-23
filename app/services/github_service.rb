@@ -18,6 +18,10 @@ class GithubService
     @following ||= get_json("/users/#{@login}/following")
   end
 
+  def organizations
+    @organizations ||= get_json("/users/#{@login}/orgs")
+  end
+
   def repositories
       @repositories ||= get_json("/users/#{@login}/repos?page=#{num = 1}")
       while @repositories.length % 30 == 0
