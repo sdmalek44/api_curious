@@ -1,7 +1,8 @@
 class Presenter
+  attr_reader :service
 
-  def initialize(current_user)
-    @service = GithubService.new(current_user)
+  def initialize(github_user)
+    @service = GithubService.new(github_user)
   end
 
   def starred_repos

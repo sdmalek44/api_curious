@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get '/dashboard', to: "dashboard#index"
   resources :repos, only: [:index]
   resources :followers, only: [:index]
+  get '/follower', to: 'followers#show'
   get '/recent_activity', to: 'recent_activity#index'
 end

@@ -1,8 +1,8 @@
 class GithubService
+  attr_reader :login
 
   def initialize(github_user)
     @token = github_user.token
-    @login = github_user.login
     @login = github_user.login
   end
 
