@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   get '/dashboard', to: "dashboard#index"
   resources :repos, only: [:index]
-  resources :followers, only: [:index]
-  get '/follower', to: 'followers#show'
+  resources :followings, only: [:index]
+  get '/following', to: 'followings#show'
   get '/recent_activity', to: 'recent_activity#index'
 end

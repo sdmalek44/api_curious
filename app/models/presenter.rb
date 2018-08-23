@@ -17,8 +17,8 @@ class Presenter
     end
   end
 
-  def following
-    @service.following.map do |following|
+  def followings
+    @service.followings.map do |following|
       GithubUser.new(following[:login], following[:avatar_url], following[:url])
     end
   end

@@ -1,4 +1,4 @@
-class FollowersController < ApplicationController
+class FollowingsController < ApplicationController
   def index
     @presenter = Presenter.new(current_user)
   end

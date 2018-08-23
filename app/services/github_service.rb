@@ -14,7 +14,7 @@ class GithubService
     @followers ||= get_json("/users/#{@login}/followers")
   end
 
-  def following
+  def followings
     @following ||= get_json("/users/#{@login}/following")
   end
 

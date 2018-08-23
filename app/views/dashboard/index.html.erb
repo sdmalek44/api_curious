@@ -1,8 +1,8 @@
 <% if current_user %>
 <img src="<%= current_user.image %>" alt="avatar">
 <div class="starred">Starred Repos <%= @presenter.starred_repos.length %></div>
-<div class="followers"><%= link_to 'Followers:', '/followers' %> <%= @presenter.followers.length %></div>
-<div class="following">Following: <%= @presenter.following.length %></div>
+<div class="followers"><%= @presenter.followers.length %></div>
+<div class="following"><%= link_to 'Following:', '/followings' %><%= @presenter.followings.length %></div>
 <%= link_to 'Recent Activity', '/recent_activity' %></br>
 <%= link_to 'Repositories', '/repos' %>
 <% end %>

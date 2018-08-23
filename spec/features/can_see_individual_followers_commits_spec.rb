@@ -7,15 +7,15 @@ describe 'user visits /recent_activity' do
     date = 3.days.ago.strftime("%Y-%m-%d")
     login = user.login
 
-    stub_request(:get, "https://api.github.com/users/#{login}/followers").to_return(status: 200, body: File.read('./spec/mock_requests/followers.json'), headers: {})
+    stub_request(:get, "https://api.github.com/users/#{login}/following").to_return(status: 200, body: File.read('./spec/mock_requests/followers.json'), headers: {})
 
     stub_request(:get, "https://api.github.com/search/commits?q=author:colinwarmstrong+committer-date:>#{date}").to_return(status: 200, body: File.read('./spec/mock_requests/commits.json'))
 
-    visit followers_path
+    visit followings_path
 
     click_link 'colinwarmstrong'
 
-    expect(current_path).to eq(follower_path)
+    expect(current_path).to eq(following_path)
     expect(page).to have_content("colinwarmstrong's Recent Activity")
     expect(page).to have_css(".commit", count: 10)
 
