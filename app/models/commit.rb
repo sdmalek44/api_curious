@@ -4,12 +4,12 @@ class Commit
               :message,
               :author,
               :created_at
-              
-  def initialize(author, repo_name, sha_key, message, created_at)
-    @author = author
-    @repo_name = repo_name
-    @sha_key = sha_key
-    @message = message
-    @created_at = DateTime.parse(created_at)
+
+  def initialize(info)
+    @author = info[:author][:login]
+    @repo_name = info[:repository][:full_name]
+    @sha_key = info[:sha]
+    @message = info[:commit][:message]
+    @created_at = DateTime.parse(info[:commit][:author][:date])
   end
 end

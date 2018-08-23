@@ -2,7 +2,6 @@ class Presenter
 
   def initialize(current_user)
     @service = GithubService.new(current_user)
-    @current_user = current_user
   end
 
   def starred_repos
@@ -30,13 +29,8 @@ class Presenter
   end
 
   def recent_commits
-    commits = @service.push_events.inject([]) do |collector, event_info|
-      if event_info[:payload][:commits]
-        event_info[:payload][:commits].each do |commit_info|
-          collector << Commit.new(commit_info[:author][:name], event_info[:repo][:name], commit_info[:sha], commit_info[:message], event_info[:created_at]) if commit_info[:author][:name] == @current_user.name
-        end
-      end
-      collector
+    @service.recent_commits.reverse.map do |commit_info|
+      Commit.new(commit_info)
     end.shift(10)
   end
 end
