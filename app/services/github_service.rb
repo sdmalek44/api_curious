@@ -1,9 +1,9 @@
 class GithubService
+  attr_reader :login
 
   def initialize(github_user)
     @token = github_user.token
     @login = github_user.login
-    @name = github_user.name.delete(" ")
   end
 
   def starred_repos
@@ -14,8 +14,12 @@ class GithubService
     @followers ||= get_json("/users/#{@login}/followers")
   end
 
-  def following
+  def followings
     @following ||= get_json("/users/#{@login}/following")
+  end
+
+  def organizations
+    @organizations ||= get_json("/users/#{@login}/orgs")
   end
 
   def repositories
@@ -27,11 +31,7 @@ class GithubService
   end
 
   def recent_commits
-    @commits ||= (get_json("/search/commits?q=committer-name:#{@name}+committer-date:>#{3.days.ago.strftime('%Y-%m-%d')}"))[:items]
-  end
-
-  def push_events
-    @events ||= get_json("/users/#{@login}/events").find_all {|event| event[:type] == "PushEvent"}
+    @commits ||= (get_json("/search/commits?q=author:#{@login}+committer-date:>#{3.days.ago.strftime('%Y-%m-%d')}"))[:items]
   end
 
   private

@@ -12,4 +12,5 @@ class Commit
     @message = info[:commit][:message]
     @created_at = DateTime.parse(info[:commit][:author][:date])
   end
+  
 end

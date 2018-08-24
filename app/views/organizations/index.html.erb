@@ -1,0 +1,7 @@
+<% @presenter.organizations.each do |org| %>
+  <ul class="organization">
+    <li class="org-login"><%= org.login %></li>
+    <li class="org-url"><%= org.url %></li>
+    <li class="org-description"><%= org.description %></li>
+  </ul>
+<% end %>

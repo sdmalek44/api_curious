@@ -1,7 +1,8 @@
 class Presenter
+  attr_reader :service
 
-  def initialize(current_user)
-    @service = GithubService.new(current_user)
+  def initialize(github_user)
+    @service = GithubService.new(github_user)
   end
 
   def starred_repos
@@ -11,14 +12,14 @@ class Presenter
   end
 
   def followers
-    @service.followers.map do |follower_info|
-      GithubUser.new(follower_info)
+    @service.followers.map do |follower|
+      GithubUser.new(follower[:login], follower[:avatar_url], follower[:url])
     end
   end
 
-  def following
-    @service.following.map do |following_info|
-      GithubUser.new(following_info)
+  def followings
+    @service.followings.map do |following|
+      GithubUser.new(following[:login], following[:avatar_url], following[:url])
     end
   end
 
@@ -28,9 +29,15 @@ class Presenter
     end
   end
 
+  def organizations
+    @service.organizations.map do |org_info|
+      Organization.new(org_info)
+    end
+  end
+
   def recent_commits
-    @service.recent_commits.reverse.map do |commit_info|
+    @service.recent_commits.pop(10).reverse.map do |commit_info|
       Commit.new(commit_info)
-    end.shift(10)
+    end
   end
 end

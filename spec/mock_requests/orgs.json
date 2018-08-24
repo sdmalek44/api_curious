@@ -1,0 +1,30 @@
+[
+    {
+        "login": "gSchool",
+        "id": 3484345,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjM0ODQzNDU=",
+        "url": "https://api.github.com/orgs/gSchool",
+        "repos_url": "https://api.github.com/orgs/gSchool/repos",
+        "events_url": "https://api.github.com/orgs/gSchool/events",
+        "hooks_url": "https://api.github.com/orgs/gSchool/hooks",
+        "issues_url": "https://api.github.com/orgs/gSchool/issues",
+        "members_url": "https://api.github.com/orgs/gSchool/members{/member}",
+        "public_members_url": "https://api.github.com/orgs/gSchool/public_members{/member}",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/3484345?v=4",
+        "description": "Home of all the Galvanize education repositories"
+    },
+    {
+        "login": "1804-Backend",
+        "id": 42631055,
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjQyNjMxMDU1",
+        "url": "https://api.github.com/orgs/1804-Backend",
+        "repos_url": "https://api.github.com/orgs/1804-Backend/repos",
+        "events_url": "https://api.github.com/orgs/1804-Backend/events",
+        "hooks_url": "https://api.github.com/orgs/1804-Backend/hooks",
+        "issues_url": "https://api.github.com/orgs/1804-Backend/issues",
+        "members_url": "https://api.github.com/orgs/1804-Backend/members{/member}",
+        "public_members_url": "https://api.github.com/orgs/1804-Backend/public_members{/member}",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/42631055?v=4",
+        "description": "1804 backend cohort at Turing School of Software and Design"
+    }
+]

@@ -1,0 +1,7 @@
+<h2><%= current_user.name %>'s Followers</h2>
+<% @presenter.followings.each do |following| %>
+<ul class="following">
+  <img src="<%= following.image %>" alt="" class="following-image">
+  <%= link_to following.login, following_path(login: following.login), class: 'following-login'%>
+</ul>
+<% end %>
