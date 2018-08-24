@@ -64,6 +64,13 @@ RSpec.configure do |config|
   config.before(:each) do
     WebMock.reset!
   end
+
+  VCR.configure do |config|
+    config.cassette_library_dir = "spec/cassettes"
+    config.hook_into :webmock
+    config.allow_http_connections_when_no_cassette = true
+    config.filter_sensitive_data('<key>') { ENV["GITHUB_TEST_KEY"] }
+  end
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
