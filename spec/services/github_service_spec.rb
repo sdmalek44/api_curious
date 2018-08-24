@@ -78,7 +78,7 @@ describe GithubService do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       github_user = GithubService.new(user)
 
-      expect(github_user.recent_commits.count).to eq(23)
+      expect(github_user.recent_commits.count).to eq(21)
       commit_info = github_user.recent_commits.first
 
       expect(commit_info).to have_key(:author)
